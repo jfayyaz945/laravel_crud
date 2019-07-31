@@ -8,6 +8,7 @@
     margin-top: 40px;
   }
 </style>
+
 <div class="uper">
   @if(session()->get('success'))
     <div class="alert alert-success">
@@ -15,6 +16,10 @@
     </div><br />
   @endif
   <a class="btn btn-success" href="{{ route('products.create') }}"> Create </a>
+  <a class="btn btn-primary pull-right" href="#" id="advanced-search"> Search </a>
+  <p id="search-detail">Hello World</p>
+
+  
   <h2>Products Listing</h2>
   <table class="table table-striped">
     <thead>

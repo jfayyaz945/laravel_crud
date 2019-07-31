@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Filters\ProductFilters;
+use App\Search\ProductSearch;
 
 class ProductController extends Controller
 {
@@ -12,12 +15,24 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    /* public function index()
     {
         $products = Product::latest()->paginate(5);
 
         return view('products.index', compact('products'));
+    } */
+    public function index(Request $request)
+    {
+        $products = ProductSearch::apply($request);
+        return view('products.index', compact('products'));
     }
+    /* public function index(Request $request, ProductFilters $filters)
+    {
+        $products = Product::filter($filters)->paginate(5);
+        //print_r($products);
+        //die();
+        return view('products.index', compact('products'));
+    } */
 
     /**
      * Show the form for creating a new resource.

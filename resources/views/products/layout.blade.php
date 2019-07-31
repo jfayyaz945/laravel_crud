@@ -15,5 +15,13 @@
     @yield('content')
   </div>
   <script src="{{ asset('js/app.js') }}" type="text/js"></script>
+  <script>
+    $(document).ready(function(){
+      alert('hello');
+      $("#advanced-search").click(function(){
+        $("#search-detail").toggle();
+      });
+    });
+  </script>
 </body>
 </html>
