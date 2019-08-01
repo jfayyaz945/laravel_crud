@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Filters\ProductFilters;
 use App\Search\ProductSearch;
+use App\Exports\ProductExport;
+use App\Imports\ProductImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -118,5 +121,30 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect('/products')->with('success', 'Product is successfully deleted');
+    }
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function importExportView()
+    {
+       return view('products.import');
+    }
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function export() 
+    {
+        return Excel::download(new ProductExport, 'products.xlsx');
+    }
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function import() 
+    {
+        Excel::import(new ProductExport,request()->file('file'));   
+        return back();
     }
 }

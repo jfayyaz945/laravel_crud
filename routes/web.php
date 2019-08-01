@@ -20,6 +20,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('export', 'ProductController@export')->name('export');
+Route::get('importExportView', 'ProductController@importExportView');
+Route::post('import', 'ProductController@import')->name('import');
+
 Route::get('/', function () {
     return view('layouts.app');
 });
